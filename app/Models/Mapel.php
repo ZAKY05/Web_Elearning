@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Mapel extends Model
+{
+    use HasFactory;
+
+    protected $table = 'mapel';
+    protected $primaryKey = 'id_mapel';
+
+    protected $fillable = [
+        'nama_mapel',
+        'jenis',
+        'jurusan_id',
+    ];
+
+    public function jurusan(): BelongsTo
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'id_jurusan');
+    }
+
+    public function gurus(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Guru::class,
+            'guru_mapel',
+            'mapel_id',
+            'guru_id'
+        );
+    }
+}
