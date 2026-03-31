@@ -53,12 +53,12 @@
                  <li class="nxl-item nxl-hasmenu">
                      <a href="javascript:void(0);" class="nxl-link">
                          <span class="nxl-micon"><i class="fa-solid fa-circle-user"></i></span>
-                         <span class="nxl-mtext">Activity Akun</span><span class="nxl-arrow"><i
+                         <span class="nxl-mtext">Manajemen Akun</span><span class="nxl-arrow"><i
                                  class="feather-chevron-right"></i></span>
                      </a>
                      <ul class="nxl-submenu">
                          <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.akun-guru.index') }}">Guru</a></li>
-                         <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.jurusan.index') }}">Siswa</a>
+                         {{-- <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.akun-siswa.index') }}">Siswa</a> --}}
                          </li>
                      </ul>
                  </li>
