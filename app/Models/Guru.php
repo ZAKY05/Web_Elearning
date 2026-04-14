@@ -42,4 +42,24 @@ class Guru extends Model
             'mapel_id'
         );
     }
+
+    // Tambahkan method ini ke model Guru yang sudah ada
+
+    // Relasi ke user (login)
+    public function user()
+    {
+        return $this->hasOne(User::class, 'guru_id', 'id_guru');
+    }
+
+    // Relasi ke pengajaran
+    public function pengajaran()
+    {
+        return $this->hasMany(Pengajaran::class, 'guru_id', 'id_guru');
+    }
+
+    // Relasi ke nilai (input_by)
+    public function nilaiInput()
+    {
+        return $this->hasMany(Nilai::class, 'input_by', 'id_guru');
+    }
 }

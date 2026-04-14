@@ -48,4 +48,32 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relasi ke siswa
+    public function siswa()
+    {
+        return $this->belongsTo(Student::class, 'siswa_id', 'id_siswa');
+    }
+
+    // Relasi ke guru
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id', 'id_guru');
+    }
+
+    // Helper cek role
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isGuru()
+    {
+        return $this->role === 'guru';
+    }
+
+    public function isSiswa()
+    {
+        return $this->role === 'siswa';
+    }
 }

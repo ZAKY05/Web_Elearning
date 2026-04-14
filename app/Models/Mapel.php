@@ -34,4 +34,18 @@ class Mapel extends Model
             'guru_id'
         );
     }
+
+    // Tambahkan method ini ke model Mapel yang sudah ada
+
+    // Relasi ke pengajaran
+    public function pengajaran()
+    {
+        return $this->hasMany(Pengajaran::class, 'mapel_id', 'id_mapel');
+    }
+
+    // Relasi ke bank_soal (through pengajaran)
+    public function bankSoal()
+    {
+        return $this->hasManyThrough(BankSoal::class, Pengajaran::class, 'mapel_id', 'pengajaran_id');
+    }
 }
