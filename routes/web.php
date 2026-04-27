@@ -81,3 +81,12 @@ Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
     });
 
 require __DIR__ . '/auth.php';
+// ==================== REKAP ====================
+    Route::prefix('rekap')->group(function () {
+        Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');
+        Route::get('/nilai/rekap', [NilaiController::class, 'rekap']);
+        Route::post('/nilai/store', [NilaiController::class, 'store'])->name('nilai.store');
+        Route::get('/nilai/export', [NilaiController::class, 'export']);
+        
+        Route::get('/presensi', [AbsensiController::class, 'rekapPage'])->name('absensi.rekap');
+    });
