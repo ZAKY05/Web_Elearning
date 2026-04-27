@@ -81,3 +81,26 @@ Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
     });
 
 require __DIR__ . '/auth.php';
+// ==================== AKADEMIK ====================
+    Route::prefix('akademik')->group(function () {
+        // Materi
+        Route::resource('materi', MateriController::class);
+        Route::get('/materi/filter/{pengajaranId}', [MateriController::class, 'filter']);
+        
+        // Tugas & Ujian (via menu Jurusan)
+        Route::get('/jurusan', [AkademikController::class, 'index'])->name('akademik.index');
+        Route::resource('tugas', TugasController::class);
+        Route::get('/tugas/kumpulan/{tugasId}', [TugasController::class, 'kumpulan']);
+        Route::post('/tugas/nilai/{kumpulId}', [TugasController::class, 'nilai']);
+        
+        // Bank Soal
+        Route::get('/bank-soal', [BankSoalController::class, 'index'])->name('bank-soal.index');
+        Route::post('/bank-soal', [BankSoalController::class, 'store'])->name('bank-soal.store');
+        Route::put('/bank-soal/{id}', [BankSoalController::class, 'update'])->name('bank-soal.update');
+        Route::delete('/bank-soal/{id}', [BankSoalController::class, 'destroy'])->name('bank-soal.destroy');
+        
+        // Ujian
+        Route::resource('ujian', UjianController::class);
+        Route::get('/koreksi-essay', [UjianController::class, 'koreksiEssay'])->name('ujian.koreksi');
+        Route::post('/koreksi-essay/{jawabanId}', [UjianController::class, 'saveKoreksi']);
+    });
