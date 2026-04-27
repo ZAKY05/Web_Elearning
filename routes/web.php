@@ -81,3 +81,21 @@ Route::prefix('guru')->name('guru.')->middleware('auth')->group(function () {
     });
 
 require __DIR__ . '/auth.php';
+// ==================== DATA ====================
+    // Data Presensi (Absensi)
+    Route::prefix('data')->group(function () {
+        Route::get('/presensi', [AbsensiController::class, 'index'])->name('absensi.index');
+        Route::post('/absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
+        Route::post('/absensi/save', [AbsensiController::class, 'save'])->name('absensi.save');
+        Route::get('/absensi/siswa/{pengajaranId}/{tanggal}', [AbsensiController::class, 'getSiswa']);
+        Route::get('/absensi/rekap/{pengajaranId}', [AbsensiController::class, 'rekap']);
+        Route::get('/absensi/export/{pengajaranId}', [AbsensiController::class, 'export']);
+        
+        // Data Guru
+        Route::get('/guru', [ProfileController::class, 'index'])->name('profile.index');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        
+        // Data Mapel
+        Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
+        Route::get('/mapel/{pengajaranId}', [MapelController::class, 'detail'])->name('mapel.detail');
+    });
